@@ -2,6 +2,7 @@ import 'package:demo1/SecondPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'variables.dart';
+import 'package:sizer/sizer.dart';
 
 void main() async{
   await DotEnv().load('.env');
@@ -12,6 +13,8 @@ class Myhome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner:false,
+      theme: ThemeData.dark(),
       home: MeetMeWhere(),
     );
   }
@@ -31,46 +34,66 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top:60.0,left: 20,right: 20),
-        child: Center(
-          child: Container(
-            child: Form(
-              key: formKey.k1,
-              child: Column(
-                children: [
-                  TextFormField(
-                    validator: (value) {
-                      if (int.parse(value) <= 0) {
-                        return 'Enter a valid number';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      NoOfPeople = int.parse(value);
-                    },
-                    keyboardType: TextInputType.number,
+    return LayoutBuilder(
+      builder: (context,constraints){
+        return  OrientationBuilder(
+          builder: (context,orientation){
+            SizerUtil().init(constraints, orientation);
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+                theme: ThemeData.dark(),
+                home: Scaffold(
+                  body: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 25.0.h,horizontal: 2.0.h),
+                    child: Center(
+                      child: Container(
+                        child: Form(
+                          key: formKey.k1,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                      labelText: "Enter number of people including you",
+                                      fillColor: Colors.white
+                                  ),
+                                  validator: (value) {
+                                    if (int.parse(value) <= 0) {
+                                      return 'Enter a valid number';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    NoOfPeople = int.parse(value);
+                                  },
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ),
+                              SizedBox(
+                                height:3.0.h ,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    if (formKey.k1.currentState.validate()) {
+                                      formKey.k1.currentState.save();
+                                      print(locationStorage.entries);
+                                    }
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SecondPage()));
+                                  },
+                                  child: Text("Save and Next"))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        if (formKey.k1.currentState.validate()) {
-                          formKey.k1.currentState.save();
-                          print(NoOfPeople);
-                        }
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondPage()));
-                      },
-                      child: Text("Save and Next"))
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    ));
+                ));
+          },
+        );
+      },
+    );
   }
 }
