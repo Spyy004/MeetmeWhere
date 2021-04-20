@@ -99,7 +99,7 @@ class _placeDetailsState extends State<placeDetails> {
                                 child: Text("Open in Maps",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                                 color: Colors.white,
                                 onPressed: (){
-                                  MapsLauncher.launchQuery(snapshot.data[0].result.formattedAddress.toString());
+                                  MapsLauncher.launchQuery('${snapshot.data[0].result.name} ${snapshot.data[0].result.formattedAddress}');
                                 }
                             )
                           ],
