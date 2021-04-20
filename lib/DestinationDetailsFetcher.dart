@@ -1,5 +1,5 @@
 import 'package:demo1/destDetailsAPI.dart';
-import 'package:demo1/variables.dart';
+import 'package:demo1/variablesFunctions.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

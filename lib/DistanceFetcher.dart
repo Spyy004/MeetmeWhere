@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:demo1/DistanceFetcherAPIData.dart';
-import 'variables.dart';
+import 'variablesFunctions.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
