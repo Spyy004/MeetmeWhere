@@ -80,7 +80,7 @@ class _SecondPageState extends State<SecondPage> {
                               },
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  return "Enter something";
+                                  return "Enter valid coordinates";
                                 }
                                 return null;
                               },
@@ -120,10 +120,10 @@ class _SecondPageState extends State<SecondPage> {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
                       if (k == 0) {
-                        if (NoOfPeople == 1) {
+                        if (locationStorage.length== 1) {
                           getSinglePerson();
                           print("single called");
-                        } else if (NoOfPeople == 2) {
+                        } else if (locationStorage.length == 2) {
                           getDoublePerson();
                           print("double called");
                         } else {

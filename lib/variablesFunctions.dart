@@ -36,15 +36,22 @@ class Keys
 }
 getCentroid()
 {
+  print(locationStorage.entries);
   locationStorage.forEach((key, value) {
+    latsum=latsum+key;
+    longsum=longsum+value;
     updatedLatitude.add(key);
     updatedLongitude.add(value);
   });
-  centroidCalculator();
+  print(latsum);
+  print(longsum);
+  latsum=latsum/locationStorage.length;
+  longsum=longsum/locationStorage.length;
   finalLatSum=latsum;
   finalLongSum=longsum;
   print(latsum);
   print(longsum);
+  print(locationStorage.length);
   locationStorage.clear();
 }
 updateLatLong()async
@@ -63,42 +70,21 @@ updateLatLong()async
   locationStorage.clear();
 }
 
-void centroidCalculator()
-{
-
-  int i=0;
-  double signedArea=0.0;
-  locationStorage.forEach((lat, lng) {
-    latList.add(lat);
-    longList.add(lng);
-    i++;
-  });
-  for(int i=0;i<latList.length;i++)
-    {
-      double x0=latList[i],y0=longList[i];
-      double x1=latList[(i+1)%latList.length],y1=longList[(i+1)%longList.length];
-      double area= (x0*y1)-(x1-y0);
-      signedArea=signedArea +area;
-      latsum=latsum+(x0+x1)*area;
-      longsum=longsum+(y0+y1)*area;
-    }
-  signedArea = signedArea*0.5;
-  latsum=latsum/(6*signedArea);
-  longsum=longsum/(6*signedArea);
-}
 getSinglePerson()
 {
   locationStorage.forEach((key, value) {
-    latsum=key;
-    longsum=value;
+    latsum=latsum+key;
+    longsum=longsum+value;
   });
 }
 getDoublePerson()
 {
+  print(locationStorage.entries);
   locationStorage.forEach((key, value) {
     latsum=latsum+key;
     longsum=longsum+value;
   });
   latsum=latsum/locationStorage.length;
   longsum=longsum/locationStorage.length;
+  locationStorage.clear();
 }
