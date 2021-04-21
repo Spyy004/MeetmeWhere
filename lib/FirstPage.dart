@@ -6,11 +6,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'SplashScreen.dart';
 import 'variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   await DotEnv().load('.env');
-  runApp(MaterialApp(home: Myhome()));
+  runApp(MaterialApp(home: Myhome(),debugShowCheckedModeBanner: false,));
 }
 
 class Myhome extends StatelessWidget {
@@ -61,7 +60,7 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                 home: Scaffold(
                   body: Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: 25.0.h, horizontal: 2.0.h),
+                        vertical: 25.0.h, horizontal: 5.0.w),
                     child: Center(
                       child: Container(
                         child: Form(
@@ -71,6 +70,8 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                               Expanded(
                                 child: TextFormField(
                                   decoration: InputDecoration(
+                                    icon: Icon(Icons.group,color: Colors.white,),
+                                     border: OutlineInputBorder(),
                                       labelText:
                                           "Enter number of people including you",
                                       fillColor: Colors.white),

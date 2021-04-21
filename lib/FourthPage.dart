@@ -81,6 +81,7 @@ class _FourthState extends State<Fourth> {
                                   snapshot.data.results[index].name,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.yellow[800],
                                       fontSize: 4.0.w),
                                 ),
                                 selectedTileColor: Colors.green,
@@ -89,7 +90,7 @@ class _FourthState extends State<Fourth> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 3.0.w,
-                                      color: Colors.white),
+                                      color: Colors.green[400]),
                                 ),
                                 subtitle: RatingBarIndicator(
                                   rating: snapshot.data.results[index].rating
@@ -98,7 +99,7 @@ class _FourthState extends State<Fourth> {
                                   itemSize: 5.0.w,
                                   itemBuilder: (context, index) => Icon(
                                     Icons.star,
-                                    color: Colors.amber,
+                                    color: Colors.yellow[400],
                                   ),
                                 ));
                           },
@@ -110,7 +111,8 @@ class _FourthState extends State<Fourth> {
                       }
                     }
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child:
+                      CircularProgressIndicator(),
                     );
                   },
                 ),

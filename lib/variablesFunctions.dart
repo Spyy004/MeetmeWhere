@@ -28,6 +28,7 @@ List<double>updatedLatitude=[];
 List<double>updatedLongitude=[];
 int k=0;
 GetLocation gl= GetLocation();
+List<IconData> placesIcon =[Icons.restaurant,Icons.local_mall,Icons.museum,Icons.park,Icons.restaurant_menu,Icons.gamepad_outlined];
 class Keys
 {
   final k1= GlobalKey<FormState>();

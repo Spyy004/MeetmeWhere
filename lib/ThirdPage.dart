@@ -33,10 +33,11 @@ class _State extends State<MeetUpPage> {
             Padding(
               padding: EdgeInsets.only(left: 1.0.h, top: 10.0.h),
               child: Text(
-                "Select the type of place where you wish to meet(can select only one)",
+                "Select the type of place where you wish to meet",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 13.0.sp,
                   fontWeight: FontWeight.bold,
+                  color: Colors.yellow[800]
                 ),
               ),
             ),
@@ -53,13 +54,20 @@ class _State extends State<MeetUpPage> {
                             builder: (BuildContext context, int index1,
                                 bool selected) {
                               selectedInterestPoint = interestPoints[index1];
-                              return Text(
-                                interestPoints[index],
-                                style: TextStyle(
-                                    color:
-                                        selected ? Colors.green : Colors.grey,
-                                    fontSize: 8.0.w,
-                                    fontWeight: FontWeight.bold),
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(placesIcon[index],color: Colors.yellow[800],),
+                                  SizedBox(width: 5.0.w,),
+                                  Text(
+                                    interestPoints[index],
+                                    style: TextStyle(
+                                        color:
+                                            selected ? Colors.green : Colors.grey,
+                                        fontSize: 8.0.w,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               );
                             });
                       },

@@ -63,6 +63,8 @@ class _SecondPageState extends State<SecondPage> {
                             padding: EdgeInsets.all(3.0.h),
                             child: TextFormField(
                               decoration: InputDecoration(
+                                icon: Icon(Icons.location_on,color: Colors.green,),
+                                border: OutlineInputBorder(),
                                 labelText:
                                     "Enter latitude and longitude of person no ${index + 1}",
                               ),

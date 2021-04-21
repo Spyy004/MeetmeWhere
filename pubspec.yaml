@@ -40,6 +40,13 @@ dependencies:
   url_launcher:
   maps_launcher:
   flutter_native_splash: ^1.1.7+1
+  flutter_launcher_icons:
+
+flutter_icons:
+  image_path: "assets/icon.png"
+  ios: true
+  android: true
+
 
 
 

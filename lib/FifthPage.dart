@@ -1,4 +1,5 @@
 import 'package:demo1/DestinationDetailsFetcher.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
@@ -43,7 +44,7 @@ class _placeDetailsState extends State<placeDetails> {
                             padding: EdgeInsets.only(top: 4.0.h),
                             child: Text(snapshot.data[0].result.name,
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.red[400],
                                     fontWeight: FontWeight.bold,
                                     fontSize: 9.0.w)),
                           ),
@@ -53,8 +54,12 @@ class _placeDetailsState extends State<placeDetails> {
                           Row(
                             children: [
                               Expanded(
-                                  child: Text(
+                                  child:snapshot.data[0].result.rating.toString()!='null'? Text(
                                       'Average Rating: ${snapshot.data[0].result.rating.toString()}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)):Text(
+                                      'Average Rating: 0',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold))),
@@ -78,40 +83,46 @@ class _placeDetailsState extends State<placeDetails> {
                           Row(
                             children: [
                               Expanded(
-                                  child: Text(
+                                  child: SelectableText(
                                       'Contact No: ${snapshot.data[0].result.formattedPhoneNumber.toString()}',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold))),
                               Expanded(
-                                  child: Text(
-                                      snapshot.data[0].result.formattedAddress
-                                          .toString(),
+                                  child: SelectableText(
+                                      'Address: ${snapshot.data[0].result.formattedAddress
+                                          .toString()}',
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.bold,wordSpacing: 1.5))),
                             ],
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.07,
                           ),
                           Text(
-                            "Reviews by Visitors",
+                            "Featured Reviews",
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.yellow[800],
                                 fontWeight: FontWeight.bold,
-                                fontSize: 5.0.w),
+                                fontSize: 15.0.sp),
                           ),
                           Expanded(
                             child: ListView.builder(
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount:
-                                    snapshot.data[0].result.reviews.length,
+                                    snapshot.data[0].result.reviews==null?1:snapshot.data[0].result.reviews.length,
                                 itemBuilder: (BuildContext context, int index) {
+                                  if(snapshot.data[0].result.reviews==null)
+                                    {
+                                      return Center(child: Text("No Reviews for this Place",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 13.0.sp),));
+                                    }
                                   return Card(
-                                    elevation: 10.0,
-                                    color: Colors.black26,
+                                    color: Colors.grey[900],
+                                   shape: RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.only(topRight:Radius.circular(10),topLeft:Radius.circular(10) ),
+                                   ),
                                     child: Column(
                                       children: [
                                         Text(
@@ -119,12 +130,12 @@ class _placeDetailsState extends State<placeDetails> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 4.5.w),
+                                              fontSize: 14.0.sp),
                                         ),
                                         Text(
                                           snapshot.data[0].result.reviews[index]
                                               .text,
-                                          style: TextStyle(fontSize: 3.5.w),
+                                          style: TextStyle(fontSize: 10.0.sp,wordSpacing: 2.0),
                                         ),
                                       ],
                                     ),
@@ -142,7 +153,7 @@ class _placeDetailsState extends State<placeDetails> {
                                   Text(
                                     "Distance:${snapshot.data[1].rows[0].elements[0].distance.text.toString()}",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.yellow[700],
                                         fontWeight: FontWeight.bold,
                                         fontSize: 11.0.sp),
                                   ),
@@ -152,7 +163,7 @@ class _placeDetailsState extends State<placeDetails> {
                                   Text(
                                       "Estimated time:${snapshot.data[1].rows[0].elements[0].duration.text.toString()}",
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: Colors.yellow[700],
                                           fontWeight: FontWeight.bold,
                                           fontSize: 11.0.sp)),
                                 ],
@@ -160,13 +171,15 @@ class _placeDetailsState extends State<placeDetails> {
                             ),
                           ),
                           FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(15))),
                               child: Text(
                                 "Open in Maps",
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.yellow[800],
                                     fontWeight: FontWeight.bold),
                               ),
-                              color: Colors.white,
+                              color: Colors.black38,
                               onPressed: () {
                                 MapsLauncher.launchQuery(
                                     '${snapshot.data[0].result.name} ${snapshot.data[0].result.formattedAddress}');
