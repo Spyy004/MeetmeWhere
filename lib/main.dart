@@ -95,6 +95,10 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                                     if (formKey.k1.currentState.validate()) {
                                       formKey.k1.currentState.save();
                                       print(locationStorage.entries);
+                                      latsum=0;
+                                      k = 0;
+                                      longsum=0;
+                                      print(latsum);
                                     }
                                     Navigator.push(
                                         context,

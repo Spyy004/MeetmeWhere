@@ -146,27 +146,37 @@ class _placeDetailsState extends State<placeDetails> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 1.0.h, horizontal: 1.0.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "Distance:${snapshot.data[1].rows[0].elements[0].distance.text.toString()}",
-                                    style: TextStyle(
-                                        color: Colors.yellow[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 11.0.sp),
-                                  ),
-                                  SizedBox(
-                                    width: 2.0.w,
-                                  ),
-                                  Text(
-                                      "Estimated time:${snapshot.data[1].rows[0].elements[0].duration.text.toString()}",
+                              child: snapshot.data[1].rows[0].elements[0].status.toString()=="ZERO_RESULTS"?
+                              Padding(
+                                padding:  EdgeInsets.all(11.0),
+                                child: Text(
+                                  "Sorry,couldn't fetch your location!",
+                                  style: TextStyle(
+                                      color: Colors.yellow[700],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.0.sp),
+                                ),
+                              ):Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      "Distance:${snapshot.data[1].rows[0].elements[0].distance.text.toString()}",
                                       style: TextStyle(
                                           color: Colors.yellow[700],
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 11.0.sp)),
-                                ],
+                                          fontSize: 11.0.sp),
+                                    ),
+                                    SizedBox(
+                                      width: 2.0.w,
+                                    ),
+                                    Text(
+                                        "Estimated time:${snapshot.data[1].rows[0].elements[0].duration.text.toString()}",
+                                        style: TextStyle(
+                                            color: Colors.yellow[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 11.0.sp))
+                                  ]
                               ),
                             ),
                           ),

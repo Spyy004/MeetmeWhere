@@ -22,7 +22,6 @@ class _SecondPageState extends State<SecondPage> {
     super.initState();
     myLat = 0;
     myLong = 0;
-    k = 0;
   }
 
   Future<void> myLocation() async {
@@ -119,24 +118,9 @@ class _SecondPageState extends State<SecondPage> {
                   onPressed: () {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
-                      if (k == 0) {
-                        if (locationStorage.length== 1) {
-                          getSinglePerson();
-                          print("single called");
-                        } else if (locationStorage.length == 2) {
-                          getDoublePerson();
-                          print("double called");
-                        } else {
-                          getCentroid();
-                          print("centroid called");
-                        }
-                      } else {
-                        updateLatLong();
-                        print(locationStorage.entries);
-                        print("update called");
-                      }
-                      k++;
-                      // meetPoint= MeetUpPage();
+                          getCentroid(k);
+                          print(k);
+                          k++;
                       Navigator.push(
                           context,
                           MaterialPageRoute(

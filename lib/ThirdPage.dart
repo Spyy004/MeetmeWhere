@@ -27,11 +27,11 @@ class _State extends State<MeetUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 3.0.h, top: 10.0.h),
+        padding: EdgeInsets.only(left: 2.0.w, top: 10.0.h),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 1.0.h, top: 10.0.h),
+              padding: EdgeInsets.only(left: 1.0.w, top: 10.0.h),
               child: Text(
                 "Select the type of place where you wish to meet",
                 style: TextStyle(

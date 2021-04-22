@@ -10,6 +10,7 @@ Future<Distances> fetchDistance(double finalLat, double finalLong)async
   final response = await http.get(Uri.parse(url));
   if(response.statusCode==200)
   {
+    print(response.body);
     return Distances.fromJson(json.decode(response.body));
   }
   else{

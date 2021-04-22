@@ -41,10 +41,10 @@ class _FourthState extends State<Fourth> {
                     if (snapshot.connectionState == ConnectionState.done) {
                       if (snapshot.data.status.toString() == 'ZERO_RESULTS') {
                         return Center(
-                          child: Text("Sorry, no places found in that region",
+                          child: Text("Sorry, no places found in that region (If you get same message twice, restart the app and fill details correctly",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 4.0.w)),
+                                  fontSize: 9.0.sp)),
                         );
                       }
                       if (snapshot.data.status.toString() ==
@@ -54,7 +54,7 @@ class _FourthState extends State<Fourth> {
                               "Location missing, close app and start again",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 4.0.w)),
+                                  fontSize: 9.0.sp)),
                         );
                       } else if (snapshot.hasData) {
                         return ListView.builder(
@@ -82,14 +82,14 @@ class _FourthState extends State<Fourth> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.yellow[800],
-                                      fontSize: 4.0.w),
+                                      fontSize: 14.0.sp),
                                 ),
                                 selectedTileColor: Colors.green,
                                 trailing: Text(
                                   'Total no of Ratings: ${snapshot.data.results[index].userRatingsTotal}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 3.0.w,
+                                      fontSize: 9.0.sp,
                                       color: Colors.green[400]),
                                 ),
                                 subtitle: RatingBarIndicator(

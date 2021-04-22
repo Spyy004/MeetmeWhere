@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'package:demo1/destDetailsAPI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'DestAPIData.dart';
 import 'DistanceFetcherAPIData.dart';
 import 'Location Fetcher.dart';
@@ -34,57 +35,35 @@ class Keys
   final k1= GlobalKey<FormState>();
   final k2= GlobalKey<FormState>();
 }
-getCentroid()
+getCentroid(int callTime)
 {
-  print(locationStorage.entries);
-  locationStorage.forEach((key, value) {
-    latsum=latsum+key;
-    longsum=longsum+value;
-    updatedLatitude.add(key);
-    updatedLongitude.add(value);
-  });
-  print(latsum);
-  print(longsum);
-  latsum=latsum/locationStorage.length;
-  longsum=longsum/locationStorage.length;
-  finalLatSum=latsum;
-  finalLongSum=longsum;
-  print(latsum);
-  print(longsum);
-  print(locationStorage.length);
-  locationStorage.clear();
-}
-updateLatLong()async
-{
-  int i=0;
-  if(locationStorage.isNotEmpty)
-    {
-      locationStorage.forEach((key, value) {
-        latsum=latsum-(key-updatedLatitude[i]);
-        longsum=longsum-(value-updatedLongitude[i]);
-        updatedLatitude[i]=key;
-        updatedLongitude[i]=value;
-        i++;
-      });
-    }
-  locationStorage.clear();
-}
+  latsum=0;longsum=0;
+  print('Centroid Call: latsum:$latsum longsum:$longsum');
+  if(locationStorage.isNotEmpty && callTime==0) {
+    print(locationStorage.entries);
+    locationStorage.forEach((key, value) {
+      latsum = latsum + key;
+      longsum = longsum + value;
+    });
+    latsum = latsum / locationStorage.length;
+    longsum = longsum / locationStorage.length;
+    locationStorage.clear();
+    print('First Call: latsum:$latsum longsum:$longsum');
+    print('First Call: ${locationStorage.entries}');
+  }
+  else if (locationStorage.isNotEmpty && callTime>0) {
+    print(locationStorage.entries);
+    locationStorage.putIfAbsent(myLat, () => myLong);
+    locationStorage.forEach((key, value) {
+          latsum = latsum + key;
+          longsum = longsum + value;
 
-getSinglePerson()
-{
-  locationStorage.forEach((key, value) {
-    latsum=latsum+key;
-    longsum=longsum+value;
-  });
-}
-getDoublePerson()
-{
-  print(locationStorage.entries);
-  locationStorage.forEach((key, value) {
-    latsum=latsum+key;
-    longsum=longsum+value;
-  });
-  latsum=latsum/locationStorage.length;
-  longsum=longsum/locationStorage.length;
-  locationStorage.clear();
+    });
+    latsum = latsum / locationStorage.length;
+    longsum = longsum / locationStorage.length;
+    print(locationStorage.entries);
+    locationStorage.clear();
+    print('Update Call: latsum:$latsum longsum:$longsum');
+    print('Update Call: ${locationStorage.entries}');
+  }
 }
