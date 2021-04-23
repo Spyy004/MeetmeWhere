@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
 import 'package:demo1/variablesFunctions.dart';
-
+import 'package:sizer/sizer.dart';
 class SecondPage extends StatefulWidget {
   @override
   _SecondPageState createState() => _SecondPageState();
@@ -32,7 +32,7 @@ class _SecondPageState extends State<SecondPage> {
       key: _scaffoldKey,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
@@ -45,20 +45,28 @@ class _SecondPageState extends State<SecondPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText:
-                              "Enter latitude and longitude of person no ${index + 1}",
+                          Padding(
+                            padding:  EdgeInsets.all(1.0.h),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                icon: Icon(
+                                  Icons.location_on,
+                                  color: Colors.white,
+                                ),
+                                labelText:
+                                "Enter latitude and longitude of person no ${index + 1}",
+                              ),
+                              keyboardType: TextInputType.numberWithOptions(
+                                  signed: false, decimal: true),
+                              onSaved: (value) {
+                                print(value);
+                                var z= value.toString().split(' ').first;
+                                var y= value.toString().split(' ').last;
+                                locationStorage.putIfAbsent(double.parse(z), () => double.parse(y));
+                                // locationAdder();
+                              },
                             ),
-                            keyboardType: TextInputType.numberWithOptions(
-                                signed: false, decimal: true),
-                            onSaved: (value) {
-                              print(value);
-                              var z= value.toString().split(' ').first;
-                              var y= value.toString().split(' ').last;
-                              locationStorage.putIfAbsent(double.parse(z), () => double.parse(y));
-                              // locationAdder();
-                            },
                           ),
                         ],
                       );
@@ -66,18 +74,24 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: ElevatedButton(
-                  onPressed: ()async{
-                    await myLocation();
-                    _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Location Fetched"),
-                      duration: Duration(seconds: 2),
-                    ));
-                  },
-                  child: Text("Get My Location")),
+              padding:  EdgeInsets.only(bottom: 4.0.h),
+              child: Column(
+                children: [
+                  Text("Wait for the pop-up after pressing below button",style: TextStyle(fontSize: 10.0.sp),)
+,
+                  ElevatedButton(
+                      onPressed: ()async{
+                        await myLocation();
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Location Fetched, Latitude:${myLat}, Longitude:${myLong}"),
+                          duration: Duration(seconds: 2),
+                        ));
+                      },
+                      child: Text("Get My Location")),
+                ],
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom:30.0),
+              padding:  EdgeInsets.only(bottom:3.0.h),
               child: ElevatedButton(
                   onPressed: () {
                     if (_key.currentState.validate()) {
