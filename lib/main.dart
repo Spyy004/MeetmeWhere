@@ -6,10 +6,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'SplashScreen.dart';
 import 'variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
-
 void main() async {
   await DotEnv().load('.env');
-  runApp(MaterialApp(home: Myhome(),debugShowCheckedModeBanner: false,));
+  print(DotEnv().env['API'].toString());
+  runApp(MaterialApp(
+    home: Myhome(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class Myhome extends StatelessWidget {
@@ -70,8 +73,11 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                               Expanded(
                                 child: TextFormField(
                                   decoration: InputDecoration(
-                                    icon: Icon(Icons.group,color: Colors.white,),
-                                     border: OutlineInputBorder(),
+                                      icon: Icon(
+                                        Icons.group,
+                                        color: Colors.white,
+                                      ),
+                                      border: OutlineInputBorder(),
                                       labelText:
                                           "Enter number of people including you",
                                       fillColor: Colors.white),
@@ -94,11 +100,7 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                                   onPressed: () {
                                     if (formKey.k1.currentState.validate()) {
                                       formKey.k1.currentState.save();
-                                      print(locationStorage.entries);
-                                      latsum=0;
-                                      k = 0;
-                                      longsum=0;
-                                      print(latsum);
+                                      zeroCheck();
                                     }
                                     Navigator.push(
                                         context,
@@ -119,4 +121,10 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
       },
     );
   }
+}
+
+zeroCheck() {
+  latsum = 0;
+  k = 0;
+  longsum = 0;
 }

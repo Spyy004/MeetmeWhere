@@ -30,63 +30,96 @@ class _State extends State<MeetUpPage> {
         padding: EdgeInsets.only(left: 2.0.w, top: 10.0.h),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 1.0.w, top: 10.0.h),
-              child: Text(
-                "Select the type of place where you wish to meet",
-                style: TextStyle(
-                  fontSize: 13.0.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.yellow[800]
-                ),
-              ),
-            ),
-            ItemSelectionController(
-              child: ListView.builder(
-                  itemCount: interestPoints.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
-                    return BlocBuilder<ColorChange, Color>(
-                      builder: (context, buttonColor) {
-                        return ItemSelectionBuilder(
-                            index: index,
-                            builder: (BuildContext context, int index1,
-                                bool selected) {
-                              selectedInterestPoint = interestPoints[index1];
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(placesIcon[index],color: Colors.yellow[800],),
-                                  SizedBox(width: 5.0.w,),
-                                  Text(
-                                    interestPoints[index],
-                                    style: TextStyle(
-                                        color:
-                                            selected ? Colors.green : Colors.grey,
-                                        fontSize: 8.0.w,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              );
-                            });
-                      },
-                    );
-                  }),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  request_count = request_count + 1;
-                  fetchDestination();
-                  print(latsum);
-                  print(longsum);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Fourth()));
-                },
-                child: Text("Save and Next"))
+            HeaderText(),
+            ItemSelectorList(),
+            NextPageButton()
           ],
         ),
       ),
     );
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  const HeaderText({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 1.0.w, top: 10.0.h),
+      child: Text(
+        "Select the type of place where you wish to meet",
+        style: TextStyle(
+          fontSize: 13.0.sp,
+          fontWeight: FontWeight.bold,
+          color: Colors.yellow[800]
+        ),
+      ),
+    );
+  }
+}
+
+class ItemSelectorList extends StatelessWidget {
+  const ItemSelectorList({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemSelectionController(
+      child: ListView.builder(
+          itemCount: interestPoints.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (BuildContext context, int index) {
+            return BlocBuilder<ColorChange, Color>(
+              builder: (context, buttonColor) {
+                return ItemSelectionBuilder(
+                    index: index,
+                    builder: (BuildContext context, int index1,
+                        bool selected) {
+                      selectedInterestPoint = interestPoints[index1];
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(placesIcon[index],color: Colors.yellow[800],),
+                          SizedBox(width: 5.0.w,),
+                          Text(
+                            interestPoints[index],
+                            style: TextStyle(
+                                color:
+                                    selected ? Colors.green : Colors.grey,
+                                fontSize: 8.0.w,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      );
+                    });
+              },
+            );
+          }),
+    );
+  }
+}
+
+class NextPageButton extends StatelessWidget {
+  const NextPageButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          request_count = request_count + 1;
+          fetchDestination();
+          print(latsum);
+          print(longsum);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Fourth()));
+        },
+        child: Text("Save and Next"));
   }
 }

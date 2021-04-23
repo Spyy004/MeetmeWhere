@@ -38,7 +38,8 @@ class _placeDetailsState extends State<placeDetails> {
                     height: double.infinity,
                     child: Padding(
                       padding: EdgeInsets.all(12.0.w),
-                      child: Column(
+                      child: Column
+                        (
                         children: [
                           Padding(
                             padding: EdgeInsets.only(top: 4.0.h),
@@ -54,27 +55,30 @@ class _placeDetailsState extends State<placeDetails> {
                           Row(
                             children: [
                               Expanded(
-                                  child:snapshot.data[0].result.rating.toString()!='null'? Text(
-                                      'Average Rating: ${snapshot.data[0].result.rating.toString()}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold)):Text(
-                                      'Average Rating: 0',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold))),
+                             child: snapshot.data[0].result.rating.toString()!='null'? Text(
+                                  'Average Rating: ${snapshot.data[0].result.rating.toString()}',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)):Text(
+                                  'Average Rating: 0',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                  ),
                               Expanded(
-                                  child: snapshot.data[0].result.businessStatus
-                                              .toString() ==
-                                          'OPERATIONAL'
-                                      ? Text('Working now: Yes',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold))
-                                      : Text('Working Now: No',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold))),
+                                child:
+                              snapshot.data[0].result.businessStatus
+                                          .toString() ==
+                                      'OPERATIONAL'
+                                  ? Text('Working now: Yes',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold))
+                                  : Text('Working Now: No',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+              )
                             ],
                           ),
                           SizedBox(

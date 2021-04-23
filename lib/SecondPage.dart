@@ -1,10 +1,11 @@
+import 'package:demo1/Location Fetcher.dart';
 import 'package:demo1/ThirdPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
-import 'variablesFunctions.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:demo1/variablesFunctions.dart';
 
 class SecondPage extends StatefulWidget {
   @override
@@ -14,22 +15,17 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   final _key = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  List<TextEditingController> _editingControllerList = [];
+  GetLocation gl= GetLocation();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    myLat = 0;
-    myLong = 0;
   }
-
-  Future<void> myLocation() async {
-    Position l1 = await gl.determinePosition();
-    myLat = l1.latitude;
-    myLong = l1.longitude;
-    locationStorage.putIfAbsent(
-        l1.latitude.toDouble(), () => l1.longitude.toDouble());
+  Future<void> myLocation()async
+  {
+    Position l1= await gl.determinePosition();
+    myLat=l1.latitude;myLong=l1.longitude;
+    locationStorage.putIfAbsent(l1.latitude.toDouble(), () => l1.longitude.toDouble());
     print(locationStorage.entries);
   }
 
@@ -38,7 +34,6 @@ class _SecondPageState extends State<SecondPage> {
     // TODO: implement dispose
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,72 +49,48 @@ class _SecondPageState extends State<SecondPage> {
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: NoOfPeople - 1,
+                    itemCount: NoOfPeople-1,
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(3.0.h),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.location_on,color: Colors.green,),
-                                border: OutlineInputBorder(),
-                                labelText:
-                                    "Enter latitude and longitude of person no ${index + 1}",
-                              ),
-                              keyboardType: TextInputType.numberWithOptions(
-                                  signed: false, decimal: true),
-                              onSaved: (value) {
-                                print(value);
-                                var z = value.toString().split(' ').first;
-                                var y = value.toString().split(' ').last;
-                                locationStorage.putIfAbsent(
-                                    double.parse(z), () => double.parse(y));
-                                // locationAdder();
-                              },
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Enter valid coordinates";
-                                }
-                                return null;
-                              },
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText:
+                              "Enter latitude and longitude of person no ${index + 1}",
                             ),
+                            keyboardType: TextInputType.numberWithOptions(
+                                signed: false, decimal: true),
+                            onSaved: (value) {
+                              print(value);
+                              var z= value.toString().split(' ').first;
+                              var y= value.toString().split(' ').last;
+                              locationStorage.putIfAbsent(double.parse(z), () => double.parse(y));
+                              // locationAdder();
+                            },
                           ),
                         ],
                       );
                     }),
               ),
             ),
-            Text("Wait for a pop-up after pressing the below button"),
             Padding(
-              padding: EdgeInsets.only(bottom: 5.0.h),
+              padding: const EdgeInsets.only(bottom: 20.0),
               child: ElevatedButton(
-                  onPressed: () async {
-                    if (myLat == 0 && myLong == 0) {
-                      await myLocation();
-                      print("location fetch called");
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text("Location Fetched successfully "),
-                        duration: Duration(seconds: 2),
-                      ));
-                    } else {
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text("Location already fetched"),
-                        duration: x,
-                      ));
-                    }
-                    buttonOn = true;
+                  onPressed: ()async{
+                    await myLocation();
+                    _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Location Fetched"),
+                      duration: Duration(seconds: 2),
+                    ));
                   },
                   child: Text("Get My Location")),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 5.5.h),
+              padding: const EdgeInsets.only(bottom:30.0),
               child: ElevatedButton(
                   onPressed: () {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
                           getCentroid(k);
-                          print(k);
                           k++;
                       Navigator.push(
                           context,
