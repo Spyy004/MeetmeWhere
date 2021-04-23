@@ -8,7 +8,7 @@ import 'variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
 void main() async {
   await DotEnv().load('.env');
-  print(DotEnv().env['API'].toString());
+  print(DotEnv().env['ApiKey'].toString());
   runApp(MaterialApp(
     home: Myhome(),
     debugShowCheckedModeBanner: false,

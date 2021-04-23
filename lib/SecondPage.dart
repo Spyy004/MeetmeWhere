@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:demo1/variablesFunctions.dart';
 
 class SecondPage extends StatefulWidget {
@@ -26,13 +25,6 @@ class _SecondPageState extends State<SecondPage> {
     Position l1= await gl.determinePosition();
     myLat=l1.latitude;myLong=l1.longitude;
     locationStorage.putIfAbsent(l1.latitude.toDouble(), () => l1.longitude.toDouble());
-    print(locationStorage.entries);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
