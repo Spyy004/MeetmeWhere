@@ -6,6 +6,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'SplashScreen.dart';
 import 'variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
+
+//People Selector Page
+
 void main() async {
   await DotEnv().load('.env');
   runApp(MaterialApp(
@@ -23,12 +26,10 @@ class Myhome extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: ThemeData.dark(),
               home: Splash());
         }
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData.dark(),
           home: MeetMeWhere(),
         );
       },
@@ -58,8 +59,8 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
             SizerUtil().init(constraints, orientation);
             return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData.dark(),
                 home: Scaffold(
+                  backgroundColor: Color(0xffEDC7B7),
                   body: Padding(
                     padding: EdgeInsets.symmetric(
                         vertical: 25.0.h, horizontal: 5.0.w),
@@ -68,17 +69,19 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                         child: Form(
                           key: formKey.k1,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Expanded(
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                       icon: Icon(
                                         Icons.group,
-                                        color: Colors.white,
+                                        color: Color(0xff123c69),
                                       ),
                                       border: OutlineInputBorder(),
                                       labelText:
                                           "Enter number of people including you",
+                                      labelStyle: TextStyle(color: Colors.white),
                                       fillColor: Colors.white),
                                   validator: (value) {
                                     if (int.parse(value) <= 0) {
@@ -95,7 +98,11 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                               SizedBox(
                                 height: 3.0.h,
                               ),
-                              ElevatedButton(
+                              RaisedButton(
+                                color: Color(0xffedc7b9),
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
                                   onPressed: () {
                                     if (formKey.k1.currentState.validate()) {
                                       formKey.k1.currentState.save();
@@ -107,7 +114,7 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
                                             builder: (context) =>
                                                 SecondPage()));
                                   },
-                                  child: Text("Save and Next"))
+                                  child: Text("Save and Next",style:TextStyle(color: Color(0xffac3b61)),))
                             ],
                           ),
                         ),

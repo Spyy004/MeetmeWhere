@@ -6,6 +6,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
 import 'package:demo1/variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
+
+//Location Input Page
+
 class SecondPage extends StatefulWidget {
   @override
   _SecondPageState createState() => _SecondPageState();
@@ -29,6 +32,7 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xffEDC7B7),
       key: _scaffoldKey,
       body: Center(
         child: Column(
@@ -49,16 +53,16 @@ class _SecondPageState extends State<SecondPage> {
                             padding:  EdgeInsets.all(1.0.h),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(),
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                                 icon: Icon(
                                   Icons.location_on,
-                                  color: Colors.white,
+                                  color: Color(0xff123c69),
                                 ),
                                 labelText:
-                                "Enter latitude and longitude of person no ${index + 1}",
+                                "Enter coordinates of person ${index + 1} (Eg:12.313 23.913)",
+                                labelStyle: TextStyle(color: Colors.white,fontSize: 10.7.sp)
                               ),
-                              keyboardType: TextInputType.numberWithOptions(
-                                  signed: false, decimal: true),
+                              keyboardType: TextInputType.number,
                               onSaved: (value) {
                                 print(value);
                                 var z= value.toString().split(' ').first;
@@ -77,22 +81,28 @@ class _SecondPageState extends State<SecondPage> {
               padding:  EdgeInsets.only(bottom: 4.0.h),
               child: Column(
                 children: [
-                  Text("Wait for the pop-up after pressing below button",style: TextStyle(fontSize: 10.0.sp),)
+                  Text("Wait for the pop-up after pressing below button",style: TextStyle(fontSize: 10.0.sp,color:Color(0xff123c69),fontWeight: FontWeight.bold ),)
 ,
                   ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xffedc7b9)),
+                      ),
                       onPressed: ()async{
                         await myLocation();
                         _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Location Fetched, Latitude:${myLat}, Longitude:${myLong}"),
                           duration: Duration(seconds: 2),
                         ));
                       },
-                      child: Text("Get My Location")),
+                      child: Text("Get My Location",style: TextStyle(color: Color(0xffac3b61)),)),
                 ],
               ),
             ),
             Padding(
               padding:  EdgeInsets.only(bottom:3.0.h),
               child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Color(0xffedc7b9)),
+                ),
                   onPressed: () {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
@@ -104,7 +114,7 @@ class _SecondPageState extends State<SecondPage> {
                               builder: (context) => SecondPages()));
                     }
                   },
-                  child: Text("Save and Next")),
+                  child: Text("Save and Next",style: TextStyle(color: Color(0xffac3b61)),)),
             ),
           ],
         ),

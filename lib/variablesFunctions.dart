@@ -35,6 +35,8 @@ class Keys
   final k1= GlobalKey<FormState>();
   final k2= GlobalKey<FormState>();
 }
+
+//centroid calculator
 getCentroid(int callTime)
 {
   latsum=0;longsum=0;

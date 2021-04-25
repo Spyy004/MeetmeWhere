@@ -41,6 +41,7 @@ dependencies:
   maps_launcher:
   flutter_native_splash: ^1.1.7+1
   flutter_launcher_icons:
+  google_fonts: ^2.0.0
 
 flutter_icons:
   image_path: "assets/icon.png"

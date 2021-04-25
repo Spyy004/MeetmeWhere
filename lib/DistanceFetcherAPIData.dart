@@ -1,3 +1,6 @@
+
+//Distance Matrix API Class
+
 class Distances {
   List<String> destinationAddresses;
   List<String> originAddresses;

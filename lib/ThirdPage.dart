@@ -7,6 +7,8 @@ import 'ColorBloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:item_selector/item_selector.dart';
 
+//Place Selector Page
+
 class SecondPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class _State extends State<MeetUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xffEDC7B7),
       body: Padding(
         padding: EdgeInsets.only(left: 2.0.w, top: 10.0.h),
         child: Column(
@@ -54,7 +57,7 @@ class HeaderText extends StatelessWidget {
         style: TextStyle(
           fontSize: 13.0.sp,
           fontWeight: FontWeight.bold,
-          color: Colors.yellow[800]
+          color: Color(0xff123c69)
         ),
       ),
     );
@@ -84,13 +87,13 @@ class ItemSelectorList extends StatelessWidget {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(placesIcon[index],color: Colors.yellow[800],),
+                          Icon(placesIcon[index],color: Color(0xff123c69),),
                           SizedBox(width: 5.0.w,),
                           Text(
                             interestPoints[index],
                             style: TextStyle(
                                 color:
-                                    selected ? Colors.green : Colors.grey,
+                                    selected ? Colors.green : Color(0xffac3b61),
                                 fontSize: 8.0.w,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -112,6 +115,9 @@ class NextPageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Color(0xffedc7b9)),
+        ),
         onPressed: () {
           request_count = request_count + 1;
           fetchDestination();
@@ -120,6 +126,6 @@ class NextPageButton extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => Fourth()));
         },
-        child: Text("Save and Next"));
+        child: Text("Save and Next",style: TextStyle(color:Color(0xffac3b61) ),));
   }
 }

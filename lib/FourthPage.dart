@@ -2,6 +2,7 @@ import 'package:demo1/DestinationFetcher.dart';
 import 'package:demo1/DistanceFetcher.dart';
 import 'package:demo1/FifthPage.dart';
 import 'package:demo1/variablesFunctions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -22,6 +23,7 @@ class _FourthState extends State<Fourth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xffEDC7B7),
         body: Padding(
       padding: EdgeInsets.only(top: 9.0.h, left: 3.0.w, right: 3.0.w),
       child: Center(
@@ -32,7 +34,7 @@ class _FourthState extends State<Fourth> {
             children: [
               Text(
                 'You can visit...',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8.0.w),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8.0.w,color: Color(0xff123c69)),
               ),
               Expanded(
                 child: FutureBuilder(
@@ -44,7 +46,7 @@ class _FourthState extends State<Fourth> {
                           child: Text("Sorry, no places found in that region (If you get same message twice, restart the app and fill details correctly",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 9.0.sp)),
+                                  fontSize: 9.0.sp,color: Colors.black)),
                         );
                       }
                       if (snapshot.data.status.toString() ==
@@ -57,52 +59,57 @@ class _FourthState extends State<Fourth> {
                                   fontSize: 9.0.sp)),
                         );
                       } else if (snapshot.hasData) {
-                        return ListView.builder(
-                          itemCount: snapshot.data.results.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                                autofocus: true,
-                                onTap: () {
-                                  placeID =
-                                      snapshot.data.results[index].placeId;
-                                  fetchDestination();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              placeDetails()));
-                                  distancegetter = fetchDistance(
-                                      snapshot.data.results[index].geometry
-                                          .location.lat,
-                                      snapshot.data.results[index].geometry
-                                          .location.lng);
-                                },
-                                title: Text(
-                                  snapshot.data.results[index].name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.yellow[800],
-                                      fontSize: 14.0.sp),
-                                ),
-                                selectedTileColor: Colors.green,
-                                trailing: Text(
-                                  'Total no of Ratings: ${snapshot.data.results[index].userRatingsTotal}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 9.0.sp,
-                                      color: Colors.green[400]),
-                                ),
-                                subtitle: RatingBarIndicator(
-                                  rating: snapshot.data.results[index].rating
-                                      .toDouble(),
-                                  itemCount: 5,
-                                  itemSize: 5.0.w,
-                                  itemBuilder: (context, index) => Icon(
-                                    Icons.star,
-                                    color: Colors.yellow[400],
+                        return Card(
+                          elevation: 20,
+                          color: Color(0xffedc7b7),
+                          shadowColor: Color(0xffeee2dc),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+                          ),
+                          child: ListView.builder(
+                            itemCount: snapshot.data.results.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(
+                                  autofocus: true,
+                                  onTap: () {
+                                    placeID =
+                                        snapshot.data.results[index].placeId;
+                                    fetchDestination();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                placeDetails()));
+                                    distancegetter = fetchDistance(
+                                        snapshot.data.results[index].geometry
+                                            .location.lat,
+                                        snapshot.data.results[index].geometry
+                                            .location.lng);
+                                  },
+                                  title: Text(
+                                    snapshot.data.results[index].name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xffac3b61),
+                                        fontSize: 14.0.sp),
                                   ),
-                                ));
-                          },
+                                  selectedTileColor: Colors.green,
+                                  trailing: Icon(
+                                    Icons.navigate_next_outlined,
+                                    color: Color(0xffac3b61),
+                                  ),
+                                  subtitle: RatingBarIndicator(
+                                    rating: snapshot.data.results[index].rating
+                                        .toDouble(),
+                                    itemCount: 5,
+                                    itemSize: 5.0.w,
+                                    itemBuilder: (context, index) => Icon(
+                                      Icons.star,
+                                      color: Color(0xff123c69),
+                                    ),
+                                  ));
+                            },
+                          ),
                         );
                       } else if (snapshot.hasError) {
                         return Text(snapshot.error.toString());

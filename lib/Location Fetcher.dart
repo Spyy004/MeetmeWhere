@@ -21,6 +21,7 @@ class GetLocation {
         return Future.error('Location permissions are denied');
       }
     }
-    return await Geolocator.getCurrentPosition();
+   return GeolocatorPlatform.instance.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 }
