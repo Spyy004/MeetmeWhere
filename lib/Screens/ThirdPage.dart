@@ -1,9 +1,9 @@
-import 'package:demo1/DestinationFetcher.dart';
-import 'package:demo1/FourthPage.dart';
-import 'package:demo1/variablesFunctions.dart';
+import 'package:demo1/Services/DestinationFetcher.dart';
+import 'package:demo1/Screens/FourthPage.dart';
+import 'package:demo1/Constants/variablesFunctions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'ColorBloc.dart';
+import '../Models/ColorBloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:item_selector/item_selector.dart';
 

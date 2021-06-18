@@ -1,10 +1,10 @@
-import 'package:demo1/Location Fetcher.dart';
-import 'package:demo1/ThirdPage.dart';
+import 'package:demo1/Services/Location%20Fetcher.dart';
+import 'package:demo1/Screens/ThirdPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
-import 'package:demo1/variablesFunctions.dart';
+import 'package:demo1/Constants/variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
 
 //Location Input Page

@@ -1,7 +1,7 @@
-import 'package:demo1/DestinationFetcher.dart';
-import 'package:demo1/DistanceFetcher.dart';
-import 'package:demo1/FifthPage.dart';
-import 'package:demo1/variablesFunctions.dart';
+import 'package:demo1/Services/DestinationFetcher.dart';
+import 'package:demo1/Services/DistanceFetcher.dart';
+import 'package:demo1/Screens/FifthPage.dart';
+import 'package:demo1/Constants/variablesFunctions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';

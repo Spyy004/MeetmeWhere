@@ -1,8 +1,8 @@
-import 'package:demo1/DestinationDetailsFetcher.dart';
+import 'package:demo1/Services/DestinationDetailsFetcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'variablesFunctions.dart';
+import '../Constants/variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 

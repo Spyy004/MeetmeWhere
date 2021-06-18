@@ -1,10 +1,10 @@
-import 'package:demo1/SecondPage.dart';
-import 'package:demo1/SplashScreen.dart';
+import 'package:demo1/Screens/SecondPage.dart';
+import 'package:demo1/Screens/SplashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'SplashScreen.dart';
-import 'variablesFunctions.dart';
+import 'Screens/SplashScreen.dart';
+import 'Constants/variablesFunctions.dart';
 import 'package:sizer/sizer.dart';
 
 //People Selector Page
@@ -128,7 +128,6 @@ class _MeetMeWhereState extends State<MeetMeWhere> {
     );
   }
 }
-
 zeroCheck() {
   latsum = 0;
   k = 0;

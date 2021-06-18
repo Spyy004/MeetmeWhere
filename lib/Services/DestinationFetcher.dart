@@ -1,9 +1,9 @@
-import 'package:demo1/variablesFunctions.dart';
+import 'package:demo1/Constants/variablesFunctions.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:demo1/DestAPIData.dart';
+import 'package:demo1/Models/DestAPIData.dart';
  Future <MeetUp> fetchDestination()async
 {
    String url= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latsum,$longsum&radius=3000&krequest_count=$request_count&keyword=${selectedInterestPoint.toLowerCase()}&key=${DotEnv().env['ApiKey'].toString()}";

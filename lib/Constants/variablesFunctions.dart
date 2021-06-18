@@ -1,11 +1,11 @@
 import 'dart:collection';
-import 'package:demo1/destDetailsAPI.dart';
+import 'package:demo1/Models/destDetailsAPI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
-import 'DestAPIData.dart';
-import 'DistanceFetcherAPIData.dart';
-import 'Location Fetcher.dart';
+import '../Models/DestAPIData.dart';
+import '../Models/DistanceFetcherAPIData.dart';
+import '../Services/Location Fetcher.dart';
 int NoOfPeople;
 String placeID;
 List<double>latList=[],longList=[];
