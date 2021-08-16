@@ -1,5 +1,4 @@
-// Google Places API Object
-
+/// Google Places API Object
 class MeetUp {
   List<Results> results;
   String status;

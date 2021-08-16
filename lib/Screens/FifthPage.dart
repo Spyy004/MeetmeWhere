@@ -29,12 +29,14 @@ class _placeDetailsState extends State<placeDetails> {
               child: FutureBuilder(
                 future: Future.wait([destination, distancegetter]),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.connectionState == ConnectionState.done)
+                  {
                     if (snapshot.data[0].result.businessStatus.toString() ==
                         'CLOSED_PERMANENTLY') {
                       return Center(
                           child: Text("The Place is not Operational anymore",style: TextStyle(color: Colors.black),));
-                    } else if (snapshot.hasData) {
+                    }  /// if a place is closed permanently.
+                    else if (snapshot.hasData) {
                       return
                         ListView(
                           shrinkWrap: true,
@@ -199,7 +201,7 @@ class _placeDetailsState extends State<placeDetails> {
                                           onPressed: () {
                                             MapsLauncher.launchQuery(
                                                 '${snapshot.data[0].result.name} ${snapshot.data[0].result.formattedAddress}');
-                                          })
+                                          }) /// If you want to see the current plae in Google Maps.
                                     ],
                                   ),
                                 ),
@@ -207,15 +209,14 @@ class _placeDetailsState extends State<placeDetails> {
                             ),
                           ],
                       );
-                    }
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  } else {
-                    return Center(child: CircularProgressIndicator());
+                    }/// if everything is fine
                   }
+                  else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }  /// to handle API error
                   return Center(
                     child: CircularProgressIndicator(),
-                  );
+                  ); /// to handle internet issue
                 },
               ),
             ),

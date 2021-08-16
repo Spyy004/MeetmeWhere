@@ -26,7 +26,7 @@ class _SecondPageState extends State<SecondPage> {
   Future<void> myLocation()async
   {
     Position l1= await gl.determinePosition();
-    myLat=l1.latitude;myLong=l1.longitude;
+    myLat= l1.latitude;myLong=l1.longitude;
     locationStorage.putIfAbsent(l1.latitude.toDouble(), () => l1.longitude.toDouble());
   }
   @override
@@ -40,6 +40,7 @@ class _SecondPageState extends State<SecondPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
+              /// Form to take the location of each and every person
               child: Form(
                 key: _key,
                 child: ListView.builder(
@@ -63,6 +64,7 @@ class _SecondPageState extends State<SecondPage> {
                                 labelStyle: TextStyle(color: Colors.white,fontSize: 10.7.sp)
                               ),
                               keyboardType: TextInputType.number,
+                              /// Enters the latitude and logitude of a person in the map.
                               onSaved: (value) {
                                 print(value);
                                 var z= value.toString().split(' ').first;
@@ -87,6 +89,7 @@ class _SecondPageState extends State<SecondPage> {
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Color(0xffedc7b9)),
                       ),
+                      /// Function to fetch the device location.
                       onPressed: ()async{
                         await myLocation();
                         _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Location Fetched, Latitude:${myLat}, Longitude:${myLong}"),
@@ -106,7 +109,7 @@ class _SecondPageState extends State<SecondPage> {
                   onPressed: () {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
-                          getCentroid(k);
+                          getCentroid(k); /// The function to get centroid of the polygon made by all locations.
                           k++;
                       Navigator.push(
                           context,

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-Future<destDetails> destinationDetails()async
+Future<destDetails> destinationDetails()async /// To fetch details of a single place
 {
   String url= 'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&name,url,rating,formatted_address,formatted_phone_number&key=${DotEnv().env['ApiKey'].toString()}';
   var details= await http.get(Uri.parse(url));

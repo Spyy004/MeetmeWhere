@@ -34,7 +34,7 @@ class _State extends State<MeetUpPage> {
         child: Column(
           children: [
             HeaderText(),
-            ItemSelectorList(),
+            ItemSelectorList(), /// A List of types of places user can visit.
             NextPageButton()
           ],
         ),
@@ -120,7 +120,7 @@ class NextPageButton extends StatelessWidget {
         ),
         onPressed: () {
           request_count = request_count + 1;
-          fetchDestination();
+          fetchDestination(); /// A function to fetch the places around the centroid.
           print(latsum);
           print(longsum);
           Navigator.push(context,

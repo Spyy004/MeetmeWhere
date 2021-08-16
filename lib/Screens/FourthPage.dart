@@ -38,7 +38,7 @@ class _FourthState extends State<Fourth> {
               ),
               Expanded(
                 child: FutureBuilder(
-                  future: meetPoint,
+                  future: meetPoint,  /// a function which gives all the places where you can meet.
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       if (snapshot.data.status.toString() == 'ZERO_RESULTS') {
@@ -48,7 +48,7 @@ class _FourthState extends State<Fourth> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 9.0.sp,color: Colors.black)),
                         );
-                      }
+                      }  /// To handle zero places found
                       if (snapshot.data.status.toString() ==
                           'INVALID_REQUEST') {
                         return Center(
@@ -58,7 +58,8 @@ class _FourthState extends State<Fourth> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 9.0.sp)),
                         );
-                      } else if (snapshot.hasData) {
+                      } /// To handle invalid request
+                      else if (snapshot.hasData) {
                         return Card(
                           elevation: 20,
                           color: Color(0xffedc7b7),
@@ -111,15 +112,14 @@ class _FourthState extends State<Fourth> {
                             },
                           ),
                         );
-                      } else if (snapshot.hasError) {
-                        return Text(snapshot.error.toString());
-                      } else {
-                        return Center(child: CircularProgressIndicator());
                       }
-                    }
+                      else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      } /// To handle API errors.
+                    } /// if the connection is complete
                     return Center(
                       child:
-                      CircularProgressIndicator(),
+                      CircularProgressIndicator(), /// if there are internet issues
                     );
                   },
                 ),

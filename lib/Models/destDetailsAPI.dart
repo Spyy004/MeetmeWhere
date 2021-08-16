@@ -1,5 +1,5 @@
 // ignore: camel_case_types
-// Google place details API Objects
+/// Google place details API Object
 class destDetails {
   List<Null> htmlAttributions;
   Result result;

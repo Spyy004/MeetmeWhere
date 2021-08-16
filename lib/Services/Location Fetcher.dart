@@ -23,5 +23,5 @@ class GetLocation {
     }
    return GeolocatorPlatform.instance.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-  }
+  }  /// to fetch users' current location.
 }

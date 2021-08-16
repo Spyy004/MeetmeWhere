@@ -1,5 +1,5 @@
 
-//Distance Matrix API Class
+/// Distance Matrix API Model
 
 class Distances {
   List<String> destinationAddresses;

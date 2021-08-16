@@ -52,7 +52,7 @@ getCentroid(int callTime)
     locationStorage.clear();
     print('First Call: latsum:$latsum longsum:$longsum');
     print('First Call: ${locationStorage.entries}');
-  }
+  }  /// Input Location case
   else if (locationStorage.isNotEmpty && callTime>0) {
     print(locationStorage.entries);
     locationStorage.putIfAbsent(myLat, () => myLong);
@@ -67,5 +67,5 @@ getCentroid(int callTime)
     locationStorage.clear();
     print('Update Call: latsum:$latsum longsum:$longsum');
     print('Update Call: ${locationStorage.entries}');
-  }
+  } /// Editing location case
 }
